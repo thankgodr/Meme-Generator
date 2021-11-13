@@ -14,22 +14,18 @@ class MemGenerator extends React.Component {
     };
   }
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState((prev) => {
-        return { ...prev, image: 'http://i.imgflip.com/1bij.jpg' };
-      });
-    }, 1500);
+  componentWillReceiveProps(prev) {
+    this.setState({ ...this.state, image: prev.text.imageurl.links.url });
   }
 
   render() {
     return (
       <Container>
         <Row className="justify-content-md-center mt-2">
-          <Col className="text-center" xs={12} md={4}>
-            <p>{this.props.text.topText}</p>
-            <Image width={300} src={this.state.image} rounded />
-            <p>{this.props.text.btmtext}</p>
+          <Col className="text-center" xs={12} md={6}>
+            <p className="topText">{this.props.text.topText}</p>
+            <Image width="100%" height="80%" src={this.state.image} rounded />
+            <p className="btmText">{this.props.text.btmtext}</p>
           </Col>
         </Row>
       </Container>

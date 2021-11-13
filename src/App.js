@@ -8,8 +8,10 @@ class App extends React.Component {
     this.state = {
       topText: '',
       btmtext: '',
+      imageurl: '',
     };
     this.memeHandler = this.memeHandler.bind(this);
+    this.getUrls = this.getUrls.bind(this);
   }
 
   memeHandler(e) {
@@ -18,10 +20,16 @@ class App extends React.Component {
     });
   }
 
+  getUrls(e) {
+    this.setState((prev) => {
+      return { ...prev, imageurl: e };
+    });
+  }
+
   render() {
     return (
       <div className="row">
-        <Header func={this.memeHandler} />
+        <Header func={this.memeHandler} imageUrls={this.getUrls} />
         <MemGenerator text={this.state} />
         <Footer />
       </div>
